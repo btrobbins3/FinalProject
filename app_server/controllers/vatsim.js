@@ -129,17 +129,11 @@ const vatsimArrivals = (req, res) => {
     });
     console.log(`Selected Airport: ${selectedAirport}`);
     const path = `/api/arrived/${selectedAirport}`;
-    // const wpath = `/api/weather/${selectedAirport}`;
     const requestOptions = {
       url: `${apiOptions.server}${path}`,
       method: 'GET',
       json: {},
     };
-    // const wrequestOptions = {
-    //   url: `${apiOptions.server}${path}`,
-    //   method: 'GET',
-    //   json: {},
-    // };
     request(
       requestOptions,
       (err, {statusCode}, body) => {
@@ -149,6 +143,10 @@ const vatsimArrivals = (req, res) => {
         }
         renderArrivalsPage(req, res, data);
       },
+    );
+};
+
+
       // wrequestOptions,
       // (err, {statusCode}, body) => {
       //   let wdata = [];
@@ -157,24 +155,22 @@ const vatsimArrivals = (req, res) => {
       //   }
       //   renderArrivalsPage(req, res, data, wdata);
       // }
-    );
-    // const wpath = `/api/weather/${selectedAirport}`;
-    // const wrequestOptions = {
-    //   url: `${apiOptions.server}${wpath}`,
-    //   method: 'GET',
-    //   json: {},
-    // };
-    // request(
-    //   wrequestOptions,
-    //   (err, {statusCode}, body) => {
-    //     let wdata = [];
-    //     if (statusCode === 200 && body.length) {
-    //         wdata = body;
-    //     }
-    //     renderArrivalsPage(req, res, data, wdata);
-    //   }
-    // );
-};
+      // const wpath = `/api/weather/${selectedAirport}`;
+      // const wrequestOptions = {
+      //   url: `${apiOptions.server}${wpath}`,
+      //   method: 'GET',
+      //   json: {},
+      // };
+      // request(
+      //   wrequestOptions,
+      //   (err, {statusCode}, body) => {
+      //     let wdata = [];
+      //     if (statusCode === 200 && body.length) {
+      //         wdata = body;
+      //     }
+      //     renderArrivalsPage(req, res, data, wdata);
+      //   }
+      // );
   
 const renderArrivalsPage = (req, res, responseBody) => {
     let message = null;
