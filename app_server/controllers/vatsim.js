@@ -136,11 +136,13 @@ const vatsimArrivals = (req, res) => {
     };
     request(
       requestOptions,
-      (err, {statusCode}, body) => {
+      (err, {statusCode}, body, weather) => {
         let data = [];
         if (statusCode === 200 && body.length) {
             data = body;
         }
+        let darksky = weather;
+        console.log(darksky);
         renderArrivalsPage(req, res, data);
       },
     );

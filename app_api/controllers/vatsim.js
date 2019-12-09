@@ -44,6 +44,9 @@ const isOlderThanADay = (date) => {
     return rightnow - date > day ? true : false;
 }
 
+
+let currentWeather = "DIDN'T WORK";
+
 /**
  * Client has arrived at an airport
  * @param {http request} req 
@@ -53,29 +56,34 @@ const arrived = (req, res) => {
 
     console.log(req.params.airport);
     const airport = req.params.airport;
-    Weather.find().limit(1).sort({$natural:-1}),
-    (err, docs) => {
-        console.log( "THIS IS MY DOCS " + docs);
-        //send records back
-        if(!err){
-            res.send(docs);
-        }else{
-            res.send(err);
-            console.log(err);
-        }
-    }
+    Weather.find((err, weather) => {
+        
+        // console.log(weather);
+        let weatherArray = [];
+        weather.forEach( (document) => {
+            weatherArray.push(document);
+        });
+        currentWeather = weatherArray.pop();
+        console.log(currentWeather)
+        // send records back
+        // if(!err){
+        //     res.send(weather);
+        // }else{
+        //     res.send(err);
+        //     console.log(err);
+        // }
+    });
     Client.find(
         {
             $or: [
                 { planned_destairport: airport },
                 { planned_depairport: airport }
             ]
-            // planned_destairport: airport,
         },
         //callback
         (err, docs) => {
             let records = [];
-
+            // console.log( "THIS IS CLIENT DOCS " + docs);
             docs.forEach( (document) => {
                 if (!isOlderThanADay(vatsimTimeLogonToDate(document.time_logon))){
                     records.push(document);
@@ -114,5 +122,6 @@ const arrived = (req, res) => {
 //     };   
 
 module.exports = {
-  arrived
+  arrived,
+  currentWeather
 };

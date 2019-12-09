@@ -2,7 +2,7 @@ extends layout
 
 block content
     .row
-        .col-12.col-md-8
+        .col-12.col-md-12
             .container
                 .row
                 .col
@@ -16,7 +16,7 @@ block content
                     p #{message}
 
                 .row
-                    .col
+                    .col-md-6
                         .table-responsive
                         table.table.table-sm.table-hover
                             thead
@@ -24,22 +24,20 @@ block content
                                     th Callsign
                                     th Departure
                                     th Arrival
-                                    //- th Logon Time
                             tbody
                                 each client in clients
                                     tr
                                         td #{client.callsign}
                                         td #{client.planned_depairport}
                                         td #{client.planned_destairport}
-                                        //- td #{client.time_logon}
-                    .col
+                    .col-md-6
                         h1.text-center Current Weather at #{selectedAirport}
-                        h3.text Summary:
-                        h3.text Temperature:
-                        h3.text Apparent Temperature:
-                        h3.text Precipitation Probability:
-                        h3.text Wind Speed:
-                        h3.text Wind Gust:
+                        h3.text Summary: Cloudy
+                        h3.text Temperature: 60º
+                        h3.text Apparent Temperature: 57.43º
+                        h3.text Precipitation Probability: 30%
+                        h3.text Wind Speed: 15 Mph
+                        h3.text Wind Gust: 30 Mph
 
 
 
