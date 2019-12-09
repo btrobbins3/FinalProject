@@ -1,2 +1,2 @@
 # FinalProject
-## This Requires a .env file to be run
+## This app requires .env file to be run
