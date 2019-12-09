@@ -1,0 +1,45 @@
+extends layout
+
+block content
+    .row
+        .col-12.col-md-8
+            .container
+                .row
+                .col
+                    h1.text-center Weather and Flights
+                    form(action='arrivals', method='POST')
+                        select(name='selectedAirport')
+                            each airport in airports
+                                option(value=airport) #{airport}
+                        input(type='submit', value='Submit')
+                    //- p #{selectedAirport}
+                    p #{message}
+
+                .row
+                    .col
+                        .table-responsive
+                        table.table.table-sm.table-hover
+                            thead
+                                tr
+                                    th Callsign
+                                    th Departure
+                                    th Arrival
+                                    th Logon Time
+                            tbody
+                                each client in clients
+                                    tr
+                                        td #{client.callsign}
+                                        td #{client.planned_depairport}
+                                        td #{client.planned_destairport}
+                                        td #{client.time_logon}
+                    .col
+                        h1.text-center Current Weather at #{selectedAirport}
+                        h3.text Summary:
+                        h3.text Temperature:
+                        h3.text Apparent Temperature:
+                        h3.text Precipitation Probability:
+                        h3.text Wind Speed:
+                        h3.text Wind Gust:
+
+
+
