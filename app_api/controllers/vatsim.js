@@ -64,7 +64,7 @@ const arrived = (req, res) => {
             weatherArray.push(document);
         });
         currentWeather = weatherArray.pop();
-        console.log(currentWeather)
+        console.log({currentWeather})
         // send records back
         // if(!err){
         //     res.send(weather);
